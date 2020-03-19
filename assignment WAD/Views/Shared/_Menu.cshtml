@@ -1,0 +1,43 @@
+﻿    <ul class="nav navbar-nav">
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                CATEGORIES<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                @foreach (var c in ViewBag.categories)
+                {
+                    <li><a href="../products/Category/@c.categoryId">@c.categoryName</a></li>
+
+                }
+                </ul>
+        </li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+
+
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                @(Request.IsAuthenticated ? User.Identity.Name : "User") <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                @if (!Request.IsAuthenticated)
+                {
+                    <li><a href="/Account/Login">Login</a></li>
+                    <li><a href="/Account/Forgot">Forgot Password</a></li>
+                    <li><a href="/Account/Register">Sign in</a></li>
+                }
+                else
+                {
+                    <li><a href="/Account/LogOff">Exit</a></li>
+                    <li><a href="/Account/Manage">Change Password</a></li>
+                    <li><a href="/Account/Edit">Update Infomation</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/Order/List">Shoppping cart</a></li>
+                    <li><a href="/Order/Products">Bought</a></li>
+                }
+            </ul>
+        </li>
+
+    </ul>

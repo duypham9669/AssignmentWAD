@@ -1,0 +1,89 @@
+﻿@model IEnumerable<assignment_WAD.Models.product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.category.categoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.category.categoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.productPrice)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.productId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.productId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.productId })
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+@foreach (var p in Model)
+    {
+        <div class="col-md-3 col-sm-6 col-sx-12">
+            <div class="nn-product-box">
+
+                <a href="">
+                    <img class="img-responsive" src="@p.productImage" />
+                </a>
+                <div class="nn-product-box-descriptions">
+                    <h3 class="nn-product-box-name">
+                        @Html.ActionLink(@p.productName, "Details", new { id = p.productId })
+                        
+                    </h3>
+                    <div class="nn-product-box-price ">
+                        <span class="">@p.productPrice</span>
+                    </div>
+                    <div class="nn-product-box-actions">
+                        <button type="button" title="Add to Cart" class="btn btn-default add-to-cart" data-id="@p.productId">
+                            <span>Add to Cart</span>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="clearfix"></div>
+
+

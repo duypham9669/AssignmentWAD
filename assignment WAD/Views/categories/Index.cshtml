@@ -1,0 +1,80 @@
+﻿@model IEnumerable<assignment_WAD.Models.category>
+
+@{
+    ViewBag.Title = "Index";
+}
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .topnav a {
+                float: left;
+                color: #f2f2f2;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+    </style>
+@foreach (var c in Model)
+{
+    var items = c.Products
+        .OrderBy(p => Guid.NewGuid())
+        .ToList()
+        .Take(4);
+    <div class="nn-block-margin-top30px">
+        <div class="topnav">
+            <a class="active" @Html.ActionLink(@c.categoryName, "Category", "products", new { id = c.categoryId }, null)></a>
+        </div>
+        <div style="margin-left:150px">
+    @foreach (var p in items)
+    {
+        <div class="col-md-3 col-sm-6 col-sx-12">
+            <div class="nn-product-box">
+
+                <a href="">
+                    <img class="img-responsive" src="@p.productImage" />
+                </a>
+                <div class="nn-product-box-descriptions">
+                    <h3 class="nn-product-box-name">
+                        @*@Html.ActionLink("test", "Details", "products", new { id = p.productId }, null)*@
+                        @Html.ActionLink(@p.productName, "Details", "products", new { id = p.productId }, null)
+
+                    </h3>
+                    <div class="nn-product-box-price ">
+                        <span class="">@p.productPrice</span>
+                    </div>
+                    <div class="nn-product-box-actions">
+                        <button type="button" title="Add to Cart" class="btn btn-default add-to-cart" data-id="@p.productId">
+                            @Html.ActionLink("add to cart", "AddtoCart", "Cart", new { id = p.productId }, null)
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    </div>
+    </div>
+
+    <div class="clearfix"></div>
+}
+

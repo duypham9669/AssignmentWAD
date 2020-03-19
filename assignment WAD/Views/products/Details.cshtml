@@ -1,0 +1,330 @@
+﻿@model assignment_WAD.Models.product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="container">
+    <div class="nn-product-view">
+        <div class="nn-product-essential row col-md-9 nn-margin-bottom">
+            <div class="row nn-margin-bottom ">
+                <div class="nn-product-image-box col-sm-6">
+                    <div class="nn-product-image-box-main  ">
+                        <img class="img-responsive" src="@Model.productImage" />
+
+                    </div>
+
+
+                </div>
+
+                <div class="nn-product-shop col-sm-6">
+
+                    <div class="product-name">
+                        <h1>@Model.productName</h1>
+                    </div>
+                    <span class="sku_wrapper">
+                        <span class="item-title">Product Code:</span>
+                        <span>
+                            <strong>
+                                @Model.productName - @Model.productId
+                            </strong>
+                        </span>
+                    </span>
+                    <span><br /></span>
+                    <span class="category-url-wrapper">
+                        <span class="item-title">Category: </span>
+                        <a href="">@Model.category.categoryName </a>
+                    </span>
+                    <p class="no-rating"><a href="#comments" onclick="gotoAddReviews()">Be the first to comments this product</a></p>
+
+                    <div class="short-description">
+                        <div class="std">
+                            <h5>
+
+                                <strong></strong>
+
+                            </h5><br>
+
+                        </div>
+                    </div>
+
+                    <p class="availability in-stock">
+                        <span class="item-title">
+                            <i>Availability: </i>
+                        </span>
+                        <span>
+                            <strong>
+                                quanlity
+                            </strong>
+                        </span>
+                        In stock
+                    </p>
+                    <div class="price-box">
+
+                        <h3>@Model.productPrice</h3>
+
+
+                    </div>
+                    <div class="add-to-box">
+                        <div class="add-to-cart nn-margin-bottom">
+                            <div class="qty-box">
+                                <label for="qty">Qty:</label>
+                                <input type="text" style="width:50px" class="form-control" name="qty" id="qty" maxlength="12" value="1" title="Qty">
+
+                            </div>
+                        </div>
+
+                        <button type="button" title="Add to Cart" class="btn btn-default add-to-cart" data-id="@Model.productId">
+                            <span>Add to Cart</span>
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active">
+                        <a href="#descriptions" role="tab" data-toggle="tab">
+                            Descriptions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#specifications" role="tab" data-toggle="tab">
+                            Specifications
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#comments" role="tab" data-toggle="tab">
+                            <i class="fa fa-envelope"></i> Comments
+                        </a>
+                    </li>
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade active in" id="descriptions">
+                        <h2>Descriptions</h2>
+                        <div>
+                            @Model.productDescription
+                        </div>
+                    </div>
+                    <div class="tab-pane fade row" id="specifications">
+
+
+                        <h2>Product detail</h2>
+
+
+                        <div class="col-md-6">
+                            <table class="table table-hover table-striped">
+                                <tr>
+                                    <td>
+                                        ProductCode:
+                                    </td>
+                                    <td>
+                                        @Model.productName - @Model.productId
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Name
+                                    </td>
+                                    <td>
+                                        @Model.productName
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Available
+                                    </td>
+                                    <td>
+                                        Available
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Category
+                                    </td>
+                                    <td>
+                                        @Model.category.categoryName
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Discount
+                                    </td>
+                                    <td>
+                                        10%
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ProductDate
+                                    </td>
+                                    <td>
+                                        ProductDate
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Supplier
+                                    </td>
+                                    <td>
+                                        none
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        UnitBrief
+                                    </td>
+                                    <td>
+                                        none
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Views
+                                    </td>
+                                    <td>
+                                        none
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                        <div class="col-md-6"></div>
+
+
+                    </div>
+                    <div class="tab-pane fade" id="comments">
+                        <h2>Your comments, Our treasure</h2>
+                        <div class="fb-comments" data-href="" data-width="100%" data-numposts="5" data-colorscheme="light"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="nn-product-view-right col-sm-3 nn-margin-bottom">
+
+        </div>
+
+
+
+
+    </div>
+
+</div>
+<style>
+    /* Tab Navigation */
+    .nav-tabs {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+        .nav-tabs > li > a {
+            background: #DADADA;
+            border-radius: 0;
+            box-shadow: inset 0 -8px 7px -9px rgba(0,0,0,.4),-2px -2px 5px -2px rgba(0,0,0,.4);
+        }
+
+        .nav-tabs > li.active > a,
+        .nav-tabs > li.active > a:hover {
+            background: #fff;
+            box-shadow: inset 0 0 0 0 rgba(0,0,0,.4),-2px -3px 5px -2px rgba(0,0,0,.4);
+        }
+
+    /* Tab Content */
+    .tab-pane {
+        background: #fff;
+        box-shadow: 0 0 4px rgba(0,0,0,.4);
+        border-radius: 0;
+        padding: 10px;
+    }
+
+    /*  responsive facebook comment box*/
+    .fb_iframe_widget,
+    .fb_iframe_widget span,
+    .fb_iframe_widget span iframe[style] {
+        min-width: 100% !important;
+        width: 100% !important;
+    }
+
+
+    .scroll-img {
+        border-left: 1px solid #DADADA;
+        overflow: hidden;
+    }
+
+        .scroll-img ul {
+            height: 800px;
+            margin: 0;
+        }
+
+            .scroll-img ul li {
+                display: block;
+            }
+</style>
+
+@section scripts{
+    <script src="/Content/js/jquery-1.10.2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/Content/js/jquery-ui.js"></script>
+    <script src="/Content/js/jquery.scrollbox.js"></script>
+
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+
+    <script>
+        $(function () {
+            $('#demo5').scrollbox({
+                linear: false,  // Scroll method
+                startDelay: 2,  // Start delay (in seconds)
+                delay: 3,   // Delay after each scroll event (in seconds)
+                step: 5,// Distance of each single step (in pixels)
+                speed: 32,  // Delay after each single step (in milliseconds)
+                switchItems: 1, // Items to switch after each scroll event
+                direction: 'vertical',
+                distance: 'auto',
+                autoPlay: true,
+                onMouseOverPause: true,
+                paused: false,
+                queue: null
+            });
+            $('#demo5-backward').click(function () {
+                $('#demo5').trigger('backward');
+            });
+            $('#demo5-forward').click(function () {
+                $('#demo5').trigger('forward');
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $(".add-to-cart").click(function () {
+                pid = $(this).attr("data-id");
+                $.ajax({
+                    url: "/Cart/Add",
+                    data: { id: pid },
+                    success: function (response) {
+                        $("#nn-cart-count").html(response.Count);
+                        $("#nn-cart-total").html(response.Total);
+                    }
+                });
+            });
+        });
+    </script>
+}
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

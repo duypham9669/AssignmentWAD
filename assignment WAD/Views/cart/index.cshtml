@@ -1,0 +1,73 @@
+﻿@model assignment_WAD.Models.Cart
+
+@{
+    ViewBag.Title = "Cart";
+    int index = 1;
+}
+
+<h2>List Item product</h2>
+
+<table class="table">
+    <tr>
+        <td>Index</td>
+        <td>Images</td>
+        <td>Name</td>
+        <td>Quality</td>
+        <td>Price</td>
+        <td>Product Price</td>
+
+    </tr>
+    @foreach (var item in Model.Items.Values)
+    {
+<tr>
+    <td>@index</td>
+    <td><img style="width:100px; height:100px" src="@item.productImage" /></td>
+    <td>@item.productName</td>
+   
+    <td> <a href="/cart/LesstoCart/@item.productId" style="font-size:25px">- </a>@item.quanlity   <a  style="font-size:20px" href="/cart/AddtoCart/@item.productId"> +</a></td>
+   
+    <td>@item.productPrice</td>
+    <td>@item.itemPrice</td>
+    <td>
+        <img class="remove-from-cart" data-id="@item.productId" src="~/Content/img/icons/Trash.png" />
+        <a href="/cart/removeItem/@item.productId"></a>
+        <a> @*@Html.ActionLink("remove", "removeItem", "cart", new { id = item.productId }, null)*@</a>
+    </td>
+</tr>
+        index++;
+    }
+</table>
+<strong>Total price: @Model.totalPrice (VND)</strong>
+@section scripts{
+    <script>
+        $(function () {
+            // Xóa khỏi giỏ
+            $(".remove-from-cart").click(function () {
+                pid = $(this).attr("data-id");
+                tr = $(this).parents("tr");
+                $.ajax({
+                    url: "/cart/removeItem/",
+                    data: { productId: pid },
+                    success: function (response) {
+                       //định làm không load lại trang nhưng mà thôi
+                        tr.hide(500);
+                    }
+                });
+            });
+            // Cập nhật số lượng
+            $(".quantity").keyup(function () {
+                pid = $(this).attr("data-id");
+                qty = $(this).val();
+                $.ajax({
+                    url: "/Cart/Update",
+                    data: { id: pid, quantity: qty },
+                    success: function (response) {
+                        $("#nn-cart-count").html(response.Count);
+                        $("#nn-cart-total").html(response.Total);
+                        $("#" + pid).html("$" + response.Amount);
+                    }
+                });
+            });
+        });
+    </script>
+}
